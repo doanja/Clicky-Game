@@ -1,13 +1,24 @@
-import React from 'react';
-
+import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-function App() {
-  return (
-    <div className='App'>
-      <h1>hi</h1>
-    </div>
-  );
-}
+import Navbar from './components/Containers/Navbar';
+import Footer from './components/Containers/Footer';
 
-export default App;
+export default class App extends Component {
+  state = {
+    message: '',
+    score: 0,
+    topScore: 0
+  };
+
+  render() {
+    return (
+      <React.Fragment>
+        <Navbar />
+
+        <Footer />
+      </React.Fragment>
+    );
+  }
+}
