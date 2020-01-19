@@ -13,11 +13,29 @@ export default class App extends Component {
     topScore: 0
   };
 
+  incrementScore = () => {
+    this.setState({ score: this.state.score + 1 });
+  };
+
+  setTopScore = score => {
+    this.setState({ topScore: score });
+  };
+
+  resetScore = () => {
+    this.setState({ score: 0 });
+  };
+
   render() {
     return (
       <React.Fragment>
         <Navbar message={this.state.message} />
-        <Main />
+        <Main
+          score={this.state.score}
+          topScore={this.state.topScore}
+          incrementScore={this.incrementScore}
+          setTopScore={this.setTopScore}
+          resetScore={this.resetScore}
+        />
         <Footer />
       </React.Fragment>
     );

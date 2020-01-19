@@ -1,50 +1,62 @@
 [
   {
     "_id": "5e23eaebdbad9dbbd17cb651",
-    "source": "https://picsum.photos/200"
+    "source": "https://picsum.photos/200",
+    "clicked": false
   },
   {
     "_id": "5e23eaebdc0132ea4060110d",
-    "source": "https://picsum.photos/200"
+    "source": "https://picsum.photos/200",
+    "clicked": false
   },
   {
     "_id": "5e23eaebb77c756338624e06",
-    "source": "https://picsum.photos/200"
+    "source": "https://picsum.photos/200",
+    "clicked": false
   },
   {
     "_id": "5e23eaebc5928dc7527de0d5",
-    "source": "https://picsum.photos/200"
+    "source": "https://picsum.photos/200",
+    "clicked": false
   },
   {
     "_id": "5e23eaeb562d94ba0c79015c",
-    "source": "https://picsum.photos/200"
+    "source": "https://picsum.photos/200",
+    "clicked": false
   },
   {
     "_id": "5e23eaeb57862fc5988e46b9",
-    "source": "https://picsum.photos/200"
+    "source": "https://picsum.photos/200",
+    "clicked": false
   },
   {
     "_id": "5e23eaeb61cf3a46f662657b",
-    "source": "https://picsum.photos/200"
+    "source": "https://picsum.photos/200",
+    "clicked": false
   },
   {
     "_id": "5e23eaebb8e4096f0adbe04e",
-    "source": "https://picsum.photos/200"
+    "source": "https://picsum.photos/200",
+    "clicked": false
   },
   {
     "_id": "5e23eaeb1c079c9e8b4a5d67",
-    "source": "https://picsum.photos/200"
+    "source": "https://picsum.photos/200",
+    "clicked": false
   },
   {
     "_id": "5e23eaeb553e02d78cdf9237",
-    "source": "https://picsum.photos/200"
+    "source": "https://picsum.photos/200",
+    "clicked": false
   },
   {
     "_id": "5e23eaebf010a2d6db89e3fa",
-    "source": "https://picsum.photos/200"
+    "source": "https://picsum.photos/200",
+    "clicked": false
   },
   {
     "_id": "5e23eaeb785ae9b74b9e218d",
-    "source": "https://picsum.photos/200"
+    "source": "https://picsum.photos/200",
+    "clicked": false
   }
 ]
