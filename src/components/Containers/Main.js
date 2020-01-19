@@ -19,10 +19,10 @@ export default class Main extends Component {
 
   cardClicked = id => {
     console.log('card clicked', id);
-    this.setCardStatus(id);
+    this.checkCard(id);
   };
 
-  setCardStatus = id => {
+  checkCard = id => {
     // find the card and set it to true
     const cards = this.state.cards.map(card => {
       if (card._id === id && !card.clicked) {
@@ -32,11 +32,6 @@ export default class Main extends Component {
 
         // update current points
         this.props.incrementScore();
-
-        // check top score then update
-        if (this.props.score >= this.props.topScore) {
-          this.props.setTopScore(this.props.score);
-        }
       } else if (card._id === id && card.clicked) {
         this.resetGame();
       }
@@ -54,12 +49,22 @@ export default class Main extends Component {
       arr[i] = arr[j];
       arr[j] = temp;
     }
+    console.log('shuffled arr :', arr);
     return arr;
   };
 
+  resetCards = () => {
+    const cards = this.state.cards.map(card => {
+      card.clicked = false;
+    });
+
+    this.setState({ cards });
+  };
+
   resetGame = () => {
+    this.resetCards();
     this.props.resetScore();
-    this.props.setMessage('Incorrect!');
+    this.props.setMessage('Incorrect! Starting over...');
     this.setState({ cards: this.shuffleArray(this.state.cards) });
   };
 

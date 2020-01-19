@@ -22,7 +22,12 @@ export default class App extends Component {
   };
 
   incrementScore = () => {
-    this.setState({ score: this.state.score + 1 });
+    this.setState({ score: this.state.score + 1 }, () => {
+      // update top score if...
+      if (this.state.score >= this.state.topScore) {
+        this.setTopScore(this.state.score);
+      }
+    });
   };
 
   setTopScore = score => {
@@ -46,7 +51,6 @@ export default class App extends Component {
           topScore={this.state.topScore}
           setMessage={this.setMessage}
           incrementScore={this.incrementScore}
-          setTopScore={this.setTopScore}
           resetScore={this.resetScore}
         />
         <Footer />
