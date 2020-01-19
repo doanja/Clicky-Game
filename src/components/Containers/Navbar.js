@@ -9,11 +9,13 @@ export default class Navbar extends Component {
         </a>
 
         <ul className='mx-auto navbar-nav'>
-          <li className='nav-item'>You guessed incorrectly!</li>
+          <li className='nav-item'>{this.props.message}</li>
         </ul>
 
         <ul className='navbar-nav float-right'>
-          <li className='nav-item'>Score: 0 | Top Score: 6</li>
+          <li className='nav-item'>
+            Score: {this.props.score} | Top Score: {this.props.topScore}
+          </li>
         </ul>
       </nav>
     );

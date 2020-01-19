@@ -25,19 +25,21 @@ export default class Main extends Component {
   setCardStatus = id => {
     // find the card and set it to true
     const cards = this.state.cards.map(card => {
-      if (card._id === id && !card._clicked) {
+      if (card._id === id && !card.clicked) {
         card.clicked = true;
+        // update message
+        this.props.setMessage('Correct!');
+
         // update current points
         this.props.incrementScore();
+
         // check top score then update
-        if (this.props.score > this.props.topScore) {
-          this.props.setTopScore();
+        if (this.props.score >= this.props.topScore) {
+          this.props.setTopScore(this.props.score);
         }
-      } else {
-        // restart game
+      } else if (card._id === id && card.clicked) {
         this.resetGame();
       }
-
       return card;
     });
 
@@ -45,7 +47,7 @@ export default class Main extends Component {
     this.setState({ cards });
   };
 
-  shufflArray = arr => {
+  shuffleArray = arr => {
     for (let i = arr.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       let temp = arr[i];
@@ -57,7 +59,8 @@ export default class Main extends Component {
 
   resetGame = () => {
     this.props.resetScore();
-    this.setState({ cards: this.shufflArray(this.state.cards) });
+    this.props.setMessage('Incorrect!');
+    this.setState({ cards: this.shuffleArray(this.state.cards) });
   };
 
   render() {

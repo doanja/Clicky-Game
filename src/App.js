@@ -13,6 +13,14 @@ export default class App extends Component {
     topScore: 0
   };
 
+  componentDidMount() {
+    this.setState({ score: 0, topScore: 0, message: 'Pick a Card' });
+  }
+
+  setMessage = msg => {
+    this.setState({ message: msg });
+  };
+
   incrementScore = () => {
     this.setState({ score: this.state.score + 1 });
   };
@@ -28,10 +36,15 @@ export default class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar message={this.state.message} />
+        <Navbar
+          message={this.state.message}
+          score={this.state.score}
+          topScore={this.state.topScore}
+        />
         <Main
           score={this.state.score}
           topScore={this.state.topScore}
+          setMessage={this.setMessage}
           incrementScore={this.incrementScore}
           setTopScore={this.setTopScore}
           resetScore={this.resetScore}
