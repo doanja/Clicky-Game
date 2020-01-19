@@ -4,6 +4,7 @@ import './App.css';
 
 import Navbar from './components/Containers/Navbar';
 import Footer from './components/Containers/Footer';
+import Main from './components/Containers/Main';
 
 export default class App extends Component {
   state = {
@@ -15,8 +16,8 @@ export default class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar />
-
+        <Navbar message={this.state.message} />
+        <Main />
         <Footer />
       </React.Fragment>
     );
