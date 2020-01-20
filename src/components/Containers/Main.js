@@ -14,7 +14,9 @@ export default class Main extends Component {
   };
 
   componentDidMount() {
-    this.setState({ cards: images });
+    this.setState({ cards: images }, () => {
+      this.setState({ cards: this.shuffleArray(this.state.cards) });
+    });
   }
 
   cardClicked = id => {
