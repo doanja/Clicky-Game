@@ -9,17 +9,8 @@ export default function Card(props) {
           src={props.image.source}
           onClick={() => props.cardClicked(props.image._id)}
           id={props.image._id}
-          style={props.image.clicked ? cardStyle : noStyle}
         />
       </div>
     </div>
   );
 }
-
-const cardStyle = {
-  border: '3px solid red'
-};
-
-const noStyle = {
-  border: 'none'
-};
