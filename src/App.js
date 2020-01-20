@@ -8,17 +8,12 @@ import Main from './components/Containers/Main';
 
 export default class App extends Component {
   state = {
-    message: '',
+    message: 'Pick a Card',
     score: 0,
     topScore: 0
   };
 
-  componentDidMount() {
-    this.setState({ score: 0, topScore: 0, message: 'Pick a Card' });
-  }
-
   incrementScore = () => {
-    console.log('increment');
     this.setState({ score: this.state.score + 1, message: 'Correct!' }, () => {
       // update top score if...
       if (this.state.score >= this.state.topScore) {
@@ -32,8 +27,11 @@ export default class App extends Component {
   };
 
   resetScore = () => {
-    console.log('reset');
-    this.setState({ score: 0, message: 'Incorrect! Starting over...' });
+    if (this.state.score === 12) {
+      this.setState({ score: 0, message: 'Restarting Game...' });
+    } else {
+      this.setState({ score: 0, message: 'Incorrect! Starting over...' });
+    }
   };
 
   render() {
