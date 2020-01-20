@@ -8,6 +8,7 @@ export default function Card(props) {
           className='card-img-top'
           src={props.image.source}
           onClick={() => props.cardClicked(props.image._id)}
+          id={props.image._id}
         />
       </div>
     </div>

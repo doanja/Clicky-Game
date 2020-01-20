@@ -17,12 +17,8 @@ export default class App extends Component {
     this.setState({ score: 0, topScore: 0, message: 'Pick a Card' });
   }
 
-  setMessage = msg => {
-    this.setState({ message: msg });
-  };
-
   incrementScore = () => {
-    this.setState({ score: this.state.score + 1 }, () => {
+    this.setState({ score: this.state.score + 1, message: 'Correct!' }, () => {
       // update top score if...
       if (this.state.score >= this.state.topScore) {
         this.setTopScore(this.state.score);
@@ -35,7 +31,7 @@ export default class App extends Component {
   };
 
   resetScore = () => {
-    this.setState({ score: 0 });
+    this.setState({ score: 0, message: 'Incorrect! Starting over...' });
   };
 
   render() {
@@ -49,7 +45,6 @@ export default class App extends Component {
         <Main
           score={this.state.score}
           topScore={this.state.topScore}
-          setMessage={this.setMessage}
           incrementScore={this.incrementScore}
           resetScore={this.resetScore}
         />

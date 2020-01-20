@@ -3,71 +3,69 @@ import images from '../../data';
 import Card from '../Game/Card';
 
 export default class Main extends Component {
-  // X json file full of cards with images
-  // X render card component
-  // card hasClicked = false by default
-  // onclick => set card to be true
-  // card needs an id, image
-
   state = {
     cards: []
   };
 
   componentDidMount() {
     this.setState({ cards: images }, () => {
+      console.log('cards shuffled');
       this.setState({ cards: this.shuffleArray(this.state.cards) });
     });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log('component did update');
+    if (prevState.cards !== this.state.cards) {
+      this.setState({ cards: this.shuffleArray(this.state.cards) });
+    }
+  }
+
   cardClicked = id => {
-    console.log('card clicked', id);
+    console.log('clicked:', id);
     this.checkCard(id);
   };
 
   checkCard = id => {
-    // find the card and set it to true
-    const cards = this.state.cards.map(card => {
-      if (card._id === id && !card.clicked) {
-        card.clicked = true;
-        // update message
-        this.props.setMessage('Correct!');
+    const cards = [...this.state.cards];
 
-        // update current points
-        this.props.incrementScore();
-      } else if (card._id === id && card.clicked) {
-        this.resetGame();
-      }
-      return card;
-    });
+    const card = cards.splice(cards.indexOf(id), 1);
+
+    if (!card[0].clicked) {
+      // update card.clicked to true
+      card[0].clicked = true;
+
+      // update current points
+      this.props.incrementScore();
+    } else {
+      this.resetGame();
+    }
+
+    cards.push(card[0]);
 
     // update state
     this.setState({ cards });
   };
 
   shuffleArray = arr => {
+    // console.log('shuffleArray()');
     for (let i = arr.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       let temp = arr[i];
       arr[i] = arr[j];
       arr[j] = temp;
     }
-    console.log('shuffled arr :', arr);
     return arr;
   };
 
-  resetCards = () => {
+  resetGame = () => {
     const cards = this.state.cards.map(card => {
       card.clicked = false;
     });
 
-    this.setState({ cards });
-  };
-
-  resetGame = () => {
-    this.resetCards();
-    this.props.resetScore();
-    this.props.setMessage('Incorrect! Starting over...');
-    this.setState({ cards: this.shuffleArray(this.state.cards) });
+    this.setState({ cards: this.shuffleArray(this.state.cards) }, () => {
+      this.props.resetScore();
+    });
   };
 
   render() {
