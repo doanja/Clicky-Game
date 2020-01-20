@@ -8,18 +8,15 @@ export default class Main extends Component {
   };
 
   componentDidMount() {
-    this.setState({ cards: images }, () => {
-      console.log('cards shuffled');
-      this.setState({ cards: this.shuffleArray(this.state.cards) });
-    });
+    this.resetGame();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log('component did update');
-    if (prevState.cards !== this.state.cards) {
-      this.setState({ cards: this.shuffleArray(this.state.cards) });
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log('component did update');
+  //   if (prevState.cards !== this.state.cards) {
+  //     this.setState({ cards: this.shuffleArray(this.state.cards) });
+  //   }
+  // }
 
   cardClicked = id => {
     console.log('clicked:', id);
@@ -27,17 +24,22 @@ export default class Main extends Component {
   };
 
   checkCard = id => {
+    // copy the cards from state
     const cards = [...this.state.cards];
 
+    // get the card that you clicked on
     const card = cards.splice(cards.indexOf(id), 1);
 
+    // if the card hasnt been clicked
     if (!card[0].clicked) {
       // update card.clicked to true
       card[0].clicked = true;
 
       // update current points
       this.props.incrementScore();
-    } else {
+    }
+    // the card the user picked was already clicked...
+    else {
       this.resetGame();
     }
 
@@ -47,8 +49,14 @@ export default class Main extends Component {
     this.setState({ cards });
   };
 
+  resetGame = () => {
+    this.setState({ cards: images }, () => {
+      this.setState({ cards: this.shuffleArray(this.state.cards) });
+      this.props.resetScore();
+    });
+  };
+
   shuffleArray = arr => {
-    // console.log('shuffleArray()');
     for (let i = arr.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       let temp = arr[i];
@@ -56,16 +64,6 @@ export default class Main extends Component {
       arr[j] = temp;
     }
     return arr;
-  };
-
-  resetGame = () => {
-    const cards = this.state.cards.map(card => {
-      card.clicked = false;
-    });
-
-    this.setState({ cards: this.shuffleArray(this.state.cards) }, () => {
-      this.props.resetScore();
-    });
   };
 
   render() {
